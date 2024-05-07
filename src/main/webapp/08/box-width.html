@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>박스모델</title>
+<style>
+div,a {
+	border: 2px solid #000;
+	margin-bottom: 20px;
+}
+/* width속성은 block요소에만 사용할 수 있다.
+	px : 윈도우 크기에 상관없이 고정으로 주는 값.
+	% : 부모의 사이즈를 기준으로 퍼센트값으로 들어감
+	
+ */
+.box1, .box3 {
+	width: 400px;
+	height: 100px;
+}
+
+.box2, .box4 {
+	width: 50%; /* 부모요소의 50% */
+	height: 100px;
+}
+a{
+	display:block;
+	width:500px;
+	/* 인라인 요소라 width를 가질 수 없지만 display로 block으로바꿔주면 가능 */
+	
+}
+p{
+	width:50%;
+}
+</style>
+</head>
+<body>
+	<div class="box1">box1</div>
+	<div class="box2">box2</div>
+	<a href="block.html">block요소 연습</a>
+	<div class="box3">
+		<p>pppppp태그</p>
+	</div>
+	<div class="box4">
+		<p>pppppp태그</p>
+	</div>
+</body>
+</html>

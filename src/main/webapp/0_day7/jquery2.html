@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#here {
+	border: 1px solid gray;
+}
+
+.myli {
+	background-color: orange;
+	border: 5px dotted blue;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+	//배열
+	var arr = [ "HTML5", "CSS3", "JavaScript", "jQuery" ];
+	//$(document).ready();
+	$(function() {
+		//load후 수행한다. $(function() {} );
+		var output = "<ul>";
+		//$.each(arr,f(){}) => 배열 loop 도는동안 f함수실행
+		$.each(arr, function(index, item) {
+			output += `<li>${item}</li>`; //`(backtip)
+		});
+		//값을 이미 가지고있다면 f함수만 선언
+		$("h1").each(function(index, data) {
+			//${}는 백틱문법
+			//$(data).text()는 jquery
+			//output +=`<li>${$(data).text()}</li>`; //text() : h1의 글자만 가져옴
+			//output +=`<li>${data}</li>`; //h1객체가 들어옴
+			output += `<li>${index}--${$(data).text()}</li>`;
+		});
+		output += "</ul>";
+		//innerHTML = .html()
+		$("#here").html(output);
+		//click하면
+		//$("btn1").click(function(){});
+		//on에 event를 주면 eventhandler(click)과 연결
+		$("#btn1").on("click", function() {
+			//함수안에서 직접 넣기
+			$("li").css("color", "red");
+			//미리 css style 만들어놓고 적용 .addClass()
+			$("li").addClass("myli");
+
+		});
+		$("#btn2").on("click", function() {
+			//css 삭제 .removeClass()
+			$("li").removeClass("myli");
+		});
+
+		//jquery대신에 $를 사용했는데....$를 사용하지 않겠다라고 설정 -> jQuery라고써야함
+		//$.noConflict;
+
+		$("#btn3").on("click", function() {
+			var obj1 = {
+				name : "홍길동",
+				age : 20
+			};
+			var obj2 = {
+				주소 : "마포구 연남동",
+				phone : "010-1234-1234"
+			};
+			//extend 합침
+			$.extend(obj1, obj2, {
+				전공 : "컴공",
+				취미 : "게임"
+			});
+
+			$.each(obj1, function(key, data) {
+				console.log(key + " ==> " + data);
+			});
+
+		});
+		$("#btn4").on("click", function() {
+			//$("h1:even").css("backgroundColor","orange");
+			//$("h1").filter(":even").css("backgroundColor","orange");
+			//filter선택자 안에 f사용가능 (로직이 복잡할 때)
+			$("h1").filter(function(index, data) {
+				//console.log(index,data);
+				if ($(data).text().indexOf("2") >= 0)
+					return true;
+				return false;
+			}).css("backgroundColor", "orange");
+
+		});
+		$("#btn5").on("click", function(){
+			 $("h1").css("border","1px solid gray")
+			 .filter(":even").css("backgroundColor", "orange").end()
+			 .filter(":odd").css("color", "blue");
+		 });
+		 $("#btn6").on("click", function(){
+			$("h1").first().css("color", "blue");
+			$("h1").eq(1).css("color", "green");
+			$("h1").eq(2).css("color", "red");
+			$("h1").last().css("color", "pink");
+			//음수는 뒤에서부터
+			$("h1").eq(-1).css("backgroundColor", "skyblue");
+		 });
+		 $("#btn7").on("click", function(){
+			 var result = $("#here2").children().is("p");
+			 var result = $("#here2").children().is(".aa");
+			 console.log(result);
+		 });
+		 $("#btn8").on("click", function(){
+			 var xmlStr = "\
+				<friends>\
+			 	<friend>\
+			 		<name>홍길동</name>\
+			 		<age>20</age>\
+			 	</friend>\
+			 	<friend>\
+		 		<name>홍길동2</name>\
+		 		<age>30</age>\
+		 		</friend>\
+				</friends>\
+			 ";
+				var obj = $.parseXML(xmlStr); //문자열을 객체로 만들어줌
+				$(obj).find("friend").each(function(index, item){
+					console.log($(item).find("name").text());
+			});
+		 });
+		 $("#btn9").on("click",function(){
+			 //this = btn9 / 부모의 css 변경
+			$(this).parent().css("border","5px dotted green"); 
+			 //여러개 
+			$(this).parent().css({"border":"5px dotted green", "padding":"20px"}); 
+			
+			$(this).text("비활성화");
+			$(this).parent().find("span").text("활성화");
+		 });
+	});
+</script>
+
+
+</head>
+<body>
+	<button id="btn1">li에 css적용</button>
+	<button id="btn2">li에 css삭제</button>
+	<button id="btn3">객체확장</button>
+	<button id="btn4">filter</button>
+	<button id="btn5">end(한단계올리기)</button>
+	<button id="btn6">eq(),first(),last()</button>
+	<button id="btn7">is()</button>
+	<button id="btn8">parseXML()</button>
+	
+	<div>
+		<span>비활성화</span>
+		<button id="btn9">활성화하기</button>
+	</div>	
+	
+	<h1>제목1</h1>
+	<h1>제목21</h1>
+	<h1>제목22</h1>
+	<h1>제목4</h1>
+	<h1>제목5</h1>
+	<div id="here"></div>
+
+</body>
+</html>

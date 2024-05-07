@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//2. 익명함수
+	f = function() {};
+	var v1 = 300; //함수밖에서 var은 global변수
+	v2 = 400; //var이 없으면 global변수
+	//1. 선언함수 ... 이름이 있는 함수
+	function call1() {
+		document.getElementById("here").innerHTML = "변수선언";
+		var a = 100; //함수 내에서 var은 지역변수
+		b = 200; //var이 없으면 gloval변수
+		//변수충돌을 막으려면 var사용or지역변수를사용하는것이 좋음. 
+
+	}
+	function call2() {
+		document.getElementById("here").innerHTML = v1 + v2;
+	}
+	function call3() {
+		var a = 100, b = 10;
+		var result = a < 100 && ++b > 10;
+		var result2 = a >= 100 || ++b > 10;
+		document.getElementById("here").innerHTML ="and: "+ result + " ==> " + b + " or:" + result2;
+	}
+</script>
+</head>
+<body>
+	<h1>자바스크립트연습</h1>
+	<button id="btn1" onclick="call1()">변수에 대하여 1</button>
+	<button id="btn2" onclick="call2()">변수에 대하여 2</button>
+	<button id="btn3" onclick="call3()">논리연산자</button>
+	<hr>
+	<div id="here">출력내용</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<script>
+window.onload = init;
+function init(){
+	var nodeList = document.querySelectorAll("ul li");
+	var output = "";
+	for(let index=0;index<nodeList.length; index++){//let : for안에서만 유효한 변수
+		//console.log(nodeList[index]);
+		output += nodeList[index].innerText;
+	}
+	here.innerHTML = output;
+	
+	//동적으로 객체 생성
+	//방법1
+	var tnode = document.createTextNode("자바스크립트");
+	var enode = document.createElement("h1");//<h1></h1>로 만들어짐
+	enode.appendChild(tnode); //<h1>자바스크립트</h1>
+	here.appendChild(enode);
+	//방법2
+	here.innerHTML += "<h1>자바스크립트2</h2>";
+	//이미지넣기
+	here.innerHTML += "<img src='../17/images/coffee-blue.jpg'>";
+}
+function call(){
+	//이미지 삭제 .parentNode 객체의 부모 -> 자식 삭제 removeChild()
+	var obj = document.querySelector("div img");
+	//console.log(obj)
+	obj.parentNode.removeChild(obj);
+	//ul 삭제
+	var obj2 = document.querySelector("ul");
+	obj2.parentNode.removeChild(obj2);
+}
+</script>
+</head>
+
+<body>
+<h1>DOM연습</h1>
+<ul>
+	<li>HTML</li>
+	<li>CSS</li>
+	<li>JavaScript</li>
+	
+</ul>
+<hr>
+<button onclick="call()">이미지/ul요소 삭제</button>
+<hr>
+<div id="here">여기</div>
+
+
+</body>
+</html>

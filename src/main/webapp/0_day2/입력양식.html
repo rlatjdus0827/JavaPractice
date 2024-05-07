@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>입력양식 page</title>
+</head>
+<body>
+
+<h1>입력 양식 연습</h1>
+<!--
+[input태그] - 인라인요소
+input type의 default는 "text"
+size : 입력창의 크기 / maxlength : 입력값의 길이 
+type="password" : 입력된 값을 숨겨줌.
+name이 없으면 jsp파일에서 읽어올 수 없음 / html에서 값을 넣어도 전달되지 않음.
+name : 서버에서 사용, 클라이언트도 사용
+id : 클라이언트에서만 사용, 문서내에서 유일해야함 그러나 여러개여도 오류가나지않으니 주의=> 먼저 만나는 객체를 얻는다.
+type="search" : 입력창에 x표시
+type="url" : url형태로 써야함을 명시 (format : https://www.~)
+type="email" : email형태
+type="tel" : 전화번호 => 규칙을 줘야함. pattern=""({01}{3}-{0-9}{3,4}-{0-9}{4})
+placeholder : 어떤 형식으로 작성해야하는지 표시 (format 제시)
+type="radio" : 선택하는 란-중복안됨. (같은 name을 가지고 있어야 베타적으로 작용)
+type="checkbox" : 선택하는 란-중복가능. ( 독립적 )->여러개가 서버로 전송될 수 있음 즉 배열 = jsp에서 배열로 받아야함
+type="number" : 숫자만 입력가능 
+value="10":초기값이10 min="10":최소값이10 max="100":최댓값이100 step="10":10씩커지도록
+type="range" : range를 통해 값을 넘김 (숫자바)
+type="date"(날짜)/"month"(달)/"week"(주)
+type="image" : src로 경로설정
+src="../05/images/login.png" => 상대경로
+
+[script]
+document.getElementById(id).value : 하나의 값 읽어옴
+console.log(변수명) : console에 찍기
+function () : 함수
+[button] onclick : 버튼을 눌렀을 때 실행할 것을 설정
+[fieldset] block이여서 한줄을 전부 차지 <br>필요x
+legend : fieldset의 제목부여
+-->
+<form action="inputConfirm.jsp">
+1. text : <input name="input1" id="input1" value="5555"><br>
+2. text : <input type="text" size="10" maxlength="5" name="input2" id="input2"><br>
+3. password : <input type="password" name="input3" id="input3"><br>
+4. search : <input type="search" placeholder="x표시존재" name="input4" ><br>
+5. url : <input type="url" placeholder="url:https://주소" name="input5" ><br>
+6. email : <input type="email" placeholder="email:@naver.com" name="input6" ><br>
+7. tel : <input type="tel" pattern="{01}{3}-{0-9}{3,4}-{0-9}{4}" name="input7" ><br>
+<fieldset>
+<legend>8. 성별 선택 (radio는 서로 베타적)</legend>
+<input type="radio" value="M" name="gender">남자
+<input type="radio" value="F" name="gender">여자
+</fieldset>
+
+<fieldset>
+<legend>8. 전공 선택 (radio는 서로 베타적)</legend>
+<input type="radio" value="A" name="major">컴공
+<input type="radio" value="B" name="major">경제
+<input type="radio" value="C" name="major">독어독문
+</fieldset>
+
+<fieldset>
+<legend>9. 학습과목 (checkbox는 서로 독립적이다.)</legend>
+<input type="checkbox" name="subject" value="HTML">HTML5
+<input type="checkbox" name="subject" value="CSS">CSS3
+<input type="checkbox" name="subject" value="JS">JavaScript
+<input type="checkbox" name="subject" value="JQ">JQuery
+<input type="checkbox" name="subject" value="react">ReactJS
+</fieldset>
+10. number : <input type="number" name="input8" value="10" min="10" max="100" step="10"/> <br>
+11. number "range" : <input type="range" name="input9" value="10" min="0" max="100" step="10"/><br> 
+12. date : <input type="date" name="input10"/><br>
+12. month : <input type="month" name="input11"/><br>
+12. week : <input type="week" name="input12"/><br>
+12. time : <input type="time" name="input13"/><br>
+12. datetime : <input type="datetime" name="input14"/><br>
+12. datetime-local : <input type="datetime-local" name="input15"/><br>
+13. 이미지(상대) <input type="image" src="../05/images/login.png"> <br>
+13. 이미지(절대) <input type="image" src="/webproject/05/images/login.png"><br> 
+14. 버튼 <input type="button" value="타입이 버튼" onclick="alert('form안의 버튼을 누름.')"><br>
+<img alt="" src="../05/images/login.png"><br>
+<button>form안에 버튼(서버에전송됨 즉, submit 수행)</button><br>
+<input type="submit" value="서버전송">
+
+
+<!-- type이 submit/ image = 서버전송(form의 action을 수행함) 
+	img태그는 그냥 이미지만 화면에 띄움.
+	type이 button -> 버튼 클릭시 javascript 수행하기 위함
+	form안의 <button>은 submit을 수행 / form밖의 <button>은 수행되지않음
+	즉 서버에 전송되는 것들 => type="submit" / type="image" / <button>
+	
+-->
+
+</form>
+<button onclick="call()">Id값 얻기</button>
+<script>
+function call(){
+	a = document.getElementById("input1").value;
+	console.log(a);
+}
+</script>
+</body>
+</html>

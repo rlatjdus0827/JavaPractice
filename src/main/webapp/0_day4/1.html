@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+.A a {
+	display: block;
+}
+.C a:nth-child(1){
+	/*display: none;*/ /* 자리를 차지하지 않는다. */
+	visibility: hidden; /* 자리를 차지한다. */
+}
+
+</style>
+</head>
+<body>
+<h1> Display links as block elements </h1>
+<div class="A">
+	<a href="/html/default.asp" target="_blank">HTML</a>
+	<a href="/css/default.asp" target="_blank">Css</a>
+	<a href="/js/default.asp" target="_blank">Javascript</a>
+
+</div>
+<h1> Display가 inline(default) </h1>
+<div class="B">
+	<a href="/html/default.asp" target="_blank">HTML</a>
+	<a href="/css/default.asp" target="_blank">Css</a>
+	<a href="/js/default.asp" target="_blank">Javascript</a>
+
+</div>
+<h1> Display가 inline(연습) </h1>
+<div class="C">
+	<a href="/html/default.asp" target="_blank">HTML</a>
+	<a href="/css/default.asp" target="_blank">Css</a>
+	<a href="/js/default.asp" target="_blank">Javascript</a>
+
+</div>
+</body>
+</html>

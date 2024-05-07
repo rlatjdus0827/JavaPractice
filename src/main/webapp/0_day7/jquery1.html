@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+-->
+<script src ="../js/jquery-3.7.1.min.js"></script>
+<script>
+window.onload = function() { console.log("load됨1");}; //무효
+window.onload = function() { console.log("load됨2");}; //유효
+$(document).ready(function(){console.log("load됨3");}); //유효
+$(document).ready(function(){console.log("load됨4");}); //유효
+$(function(){console.log("load됨5");}); //document와 ready는 생략할 수 있다.
+//로드가 끝나면 : $();
+$(function(){
+	$("h1").css("color","red");
+	//변경할 style이 여러개일 때 오브젝트형식으로 넣어준다. {속성 값}
+	var obj = {"backgroundColor":"lightgreen", border:"3px dotted green"};
+	$("h1").css(obj);
+	//class는 .으로 적용
+	//$("h1.my").css("font-size","50px"); 
+	$(".my").css("font-size","50px"); 
+	//input의 type이 "text"인것
+	$("input[type='text']").css("backgroundColor","hotpink");
+	//jquery이용해서 value넣기
+	$("input[type='text']").val("신한금융");
+	//js이용한 value넣기
+	document.querySelector("input:nth-of-type(3)").value = "12345";
+	//|= : 해당문자로 시작하며 뒤에 "-"로 연결된 name
+	$("input[name |= 'tag']").val("|이용 (일치,-가능)");
+	//*= : 해당하는 문자가 있는 name
+	$("input[name *= 'First']").val("*이용 (포함)");
+	//^= : 해당문자로 시작하는 name
+	$("input[name ^= 'Second']").val("^이용 (시작)");
+	//$= : 해당문자로 끝나는 name
+	$("input[name $= 'Second']").val("$이용 (끝)");
+	//~= : 단어중에 해당 문자가 있는지 
+	$("input[name ~= 'Third']").val("~이용 (단어)");
+	//속성이 존재하는가 (data-aa라는 속성이 존재하는가)
+	$("input[data-aa]").val("속성이 존재하는가");
+	//여러개 조건 => []를 여러번 
+	$("input[type='email'][data-aa='200']").val("복수조건");
+	
+	$("input:button").css("backgroundColor", "navy");
+	$("input:disabled").val("disabled임");
+	
+});
+
+
+</script>
+</head>
+<body>
+<h1>제목1</h1>
+<h1>제목2</h1>
+<h1 class="my">제목3</h1>
+<p class="my">pppppppppp</p>
+
+<input type="text">
+<input type="text">
+<input type="number">
+<input type="password">
+<input type="email">
+
+<input name="tag">
+<input name="tag-aa">
+<input name="aaaaaFirstbbb">
+<input name="Secondaaaaabbb">
+<input name="aaaaabbbSecond">
+<input name="aa bb Third">
+<input data-aa="100">
+<input type="email"data-aa="200">
+<input type="button" value="버튼1">
+<input type="button" value="버튼2">
+<input type="button" value="버튼3">
+<input disabled="disabled">
+<input disabled="disabled">
+
+<select>
+	<option>월</option>
+	<option>화</option>
+	<option>수</option>
+	<option selected="selected">토</option>
+	<option>일</option>
+</select>
+<table>
+	<tr>
+		<td>A</td><td>B</td><td>C</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>C</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>C</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>C</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>C</td>
+	</tr>
+</table>
+<p>.....신한..</p>
+<p>----신한----</p>
+<p>ㅁㅁㅁㅁㅁ</p>
+<div>ddddiiiiivvvv신한vvv</div>
+<h2>ffffaa신한alk</h2>
+<h2>ooooooooooo</h2>
+<script>
+	//jquery로 table css적용하기
+	$("table, td").css("border","1px solid black");
+	$("table, td").css("border-collapse","collapse");
+	$("td").css("padding","10px");
+	//even : 0부터 짝수만 | odd:1부터 홀수만
+	$("tr:even").css("backgroundColor","orange");
+	$("tr:odd").css("backgroundColor","lightblue");
+	//nth-child(2n) : 1부터 홀수만 (2n+1) : 0부터 짝수만
+	$("tr:nth-child(2n)").css("color","red");
+	$("tr:nth-child(2n+1)").css("color","green");
+	//nth-child(even/odd)도 가능
+	
+	//p태그에 '신한'글자가 포함되어 있는지
+	//$("p:contains('신한')").css("border","2px dotted red");
+	//모든 요소에서 '신한' 글자가 포함되어 있는지
+	//$(":contains('신한')").css("border","2px dotted green");
+	//div자손중에(spacebar)) '신한' 글자가 포함되어 있는지
+	$("div :contains('신한')").css("border","2px dotted red");
+	
+	//timeout
+	$(function(){
+		setTimeout(function(){
+			//select값 얻기
+			//var data = $("select option:selected").val();
+			var data = $("select").val();
+			alert(data);
+		},3000);
+	});
+</script>
+</body>
+</html>

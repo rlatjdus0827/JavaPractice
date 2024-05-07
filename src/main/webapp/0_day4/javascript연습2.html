@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+</head>
+<body>
+
+<h1>자바스크립트 문법</h1>
+<button id="btn1">입출력1 alert</button>
+<button id="btn2">입출력2 confirm</button>
+<button id="btn3">입출력3 prompt</button>
+<button id="btn4">입출력4 데이터타입</button>
+<hr>
+<div id="here">
+	여기에 출력하고자한다.
+</div>
+
+<script>
+//자바스크립트는 동적 타입핑이다 즉, 값이 할당되면 타입이 결정된다.
+
+var a = document.getElementById("btn1");
+var b = document.getElementById("btn2");
+var c = document.getElementById("btn3");
+var d = document.getElementById("btn4");
+var here = document.getElementById("here");
+//console.log(a);
+//button 눌렀을 때 동작
+a.onclick = function(){
+	console.log("버튼1을 누름");
+	document.getElementById("here").innerHTML = "버튼 1을 누름 " + a.innerHTML;
+	alert("알림창보이기");
+}; 
+b.onclick = function(){
+	console.log("버튼2을 누름");
+	var result = confirm("직원정보 display?");
+	if(result){
+		//alert("true");
+		location.href="../0_day1/jsp/empAll.jsp";
+	}else{
+		//alert("false");
+	}
+	
+	document.getElementById("here").innerHTML = "버튼 2을 누름 "+ b.innerHTML +" : "+ result;
+}; 
+c.onclick = function(){
+	var age = prompt("나이를 입력하세요",20);//20은 초기값
+	here.innerHTML = Number(age) + 10;
+
+};
+d.onclick = function(){
+	//number, string, boolean, object, function, undefined
+	//변수 선언은 필수가 아님 
+	//undefined는 변수는 선언했지만 값을 할당하지않은 것
+	//값을 할당할 때 타입이 결정된다.
+	var v1;
+	here.innerHTML = v1 + "==>" + typeof(v1);
+	v1 = 100;
+	here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+	v1 = "문자";
+	here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+	v1= 10>0;
+	here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+	v1= [1,2,3]; //배열 object
+	here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+	v1= {이름:"홍길동", 나이:20}; //object / json(키+값)
+	here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+	v1 = function(){};
+	here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+};
+</script>
+
+</body>
+</html>
